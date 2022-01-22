@@ -24,9 +24,9 @@ app.use(cors())
 // app.use((req,res,next)=>{
 //   res.sendFile(path.join(__dirname, '../frontend/dist/frontend/index.html'))
 // })
-// app.get('/', function(req, res) {
-//   res.sendFile(path.join(__dirname, '../frontend/dist/frontend/index.html'))
-// })
+app.get('/', function(req, res) {
+  res.send("Trang web dang chay");
+})
 
 roomHandler.registerHandler(io);
 /////////// PUPPETEER //////////////////

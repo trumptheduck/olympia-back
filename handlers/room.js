@@ -32,13 +32,25 @@
 //   } 
 // }
 var roomID = "adsada";
+var roomdata = {
+  timer: 90,
+  player: [],
+}
 exports.registerHandler = (io)=>{
   io.on("connection", socket => {
+    var isAdmin = false;
     console.log("Socket connected! | UUID:",socket.id)
+    roomdata.player.push(socket.id);
     socket.join(roomID);
     socket.to(roomID).emit("msg", "Mot nguoi khac da vao phong");
     socket.on("message", (data)=>{
       socket.to(roomID).emit("msg",data);
+    })
+    socket.on("admin",()=>{
+      isAdmin = true;
+    })
+    socket.on("getData",()=>{
+      if (isAdmin) socket.emit("data", roomdata)
     })
   });
 }

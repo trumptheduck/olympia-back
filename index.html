@@ -7,8 +7,21 @@
     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
 </head>
 <body>
+    <input id="name" placeholder="Name">
+    <input id="data" placeholder="Data">
+    <button id = "button">Send data</button>
     <script>
+        var nameInput = document.getElementById("name");
+        var dataInput = document.getElementById("data");
+        var button = document.getElementById("button");
         const socket = io("https://tramdungchan.space");
+        socket.on("msg", (data)=>{
+            console.log(data);
+        })
+        button.onclick = () => {
+            console.log(nameInput.value, dataInput.value);
+            socket.emit(nameInput.value, dataInput.value);
+        }
     </script>
 </body>
 </html>

@@ -37,5 +37,8 @@ exports.registerHandler = (io)=>{
     console.log("Socket connected! | UUID:",socket.id)
     socket.join(roomID);
     socket.to(roomID).emit("msg", "Mot nguoi khac da vao phong");
+    socket.on("message", (data)=>{
+      socket.to(roomID).emit(data);
+    })
   });
 }

@@ -31,8 +31,11 @@
 //     this.isSelf = isSelf;
 //   } 
 // }
+var roomID = "adsada";
 exports.registerHandler = (io)=>{
   io.on("connection", socket => {
     console.log("Socket connected! | UUID:",socket.id)
+    socket.join(roomID);
+    socket.to(roomID).emit("msg", "Mot nguoi khac da vao phong");
   });
 }

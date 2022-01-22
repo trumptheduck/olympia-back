@@ -38,7 +38,7 @@ exports.registerHandler = (io)=>{
     socket.join(roomID);
     socket.to(roomID).emit("msg", "Mot nguoi khac da vao phong");
     socket.on("message", (data)=>{
-      socket.to(roomID).emit(data);
+      socket.to(roomID).emit("msg",data);
     })
   });
 }
